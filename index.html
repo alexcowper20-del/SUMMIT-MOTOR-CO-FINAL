@@ -25,7 +25,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);font-weight:30
 .page{display:none;min-height:100vh}.page.active{display:block}
 #vd{display:none}
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(17,17,19,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nl{cursor:pointer}.nl img{height:36px;width:auto}
+.nl{cursor:pointer}.nl img{height:56px;width:auto}
 .nc{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:2.8rem;list-style:none}
 .nc a{font-family:var(--fb);font-size:10.5px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;transition:color 0.15s}
 .nc a:hover{color:var(--white)}
@@ -38,7 +38,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
 .mm a{display:block;padding:0.85rem 2.5rem;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;border-bottom:1px solid var(--border);transition:color 0.15s}
 .mm a:hover{color:var(--white)}
 .hero{padding-top:64px;height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end}
-.hbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1617654697880-d9bc550b0a97?w=1800&q=80') center/cover no-repeat}
+.hbg{position:absolute;inset:0;background:url('https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1800,q_90,f_auto/v1775813437/HERO_dkbyxf.jpg') center/cover no-repeat}
 .hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,19,0.97) 0%,rgba(17,17,19,0.5) 50%,rgba(17,17,19,0.1) 100%)}
 .htxt{position:relative;z-index:1;padding:0 3rem 5rem;width:100%}
 .htitle{font-family:var(--fh);font-size:clamp(3rem,7vw,7rem);font-weight:700;color:var(--white);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;margin-bottom:2rem}
@@ -106,8 +106,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
 .ph1{font-family:var(--fh);font-size:clamp(2.5rem,5.5vw,5.5rem);font-weight:700;color:var(--white);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase}
 .ph1 span{color:var(--accent)}
 .dvw{padding-top:64px}
-.dgm{aspect-ratio:16/8;overflow:hidden;background:var(--black)}
-.dgm img{width:100%;height:100%;object-fit:cover;display:block}
+.dgm{aspect-ratio:16/9;overflow:hidden;background:var(--bg3);position:relative}
+.dgm-blur{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(22px) brightness(0.35) saturate(0.7);transform:scale(1.1);z-index:0}
+.dgm img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block}
+.dgm-prev,.dgm-next{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.15);color:var(--white);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;backdrop-filter:blur(4px);font-size:18px;user-select:none}
+.dgm-prev{left:1rem}.dgm-next{right:1rem}
+.dgm-prev:hover,.dgm-next:hover{background:rgba(153,242,209,0.2);border-color:var(--accent);color:var(--accent)}
 .dtr{display:flex;gap:3px;padding:3px;background:var(--black);border-bottom:1px solid var(--border);overflow-x:auto}
 .dth{width:96px;height:64px;flex-shrink:0;object-fit:cover;cursor:pointer;opacity:0.4;transition:opacity 0.2s;border:2px solid transparent}
 .dth:hover,.dth.on{opacity:1;border-color:var(--accent)}
@@ -193,7 +197,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;al
 .mos{font-family:var(--fb);font-size:11.5px;color:var(--accent);margin-bottom:1.5rem}
 footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var(--border)}
 .ftg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
-.fli img{height:42px;width:auto;margin-bottom:1.2rem;display:block}
+.fli img{height:66px;width:auto;margin-bottom:1.2rem;display:block}
 .ftag{font-family:var(--fb);font-size:11.5px;color:rgba(255,255,255,0.25);line-height:1.8;max-width:210px}
 .fct{font-family:var(--fh);font-size:8.5px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
 .fls{list-style:none}.fls li{margin-bottom:0.5rem}
@@ -232,6 +236,42 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
   .tab{padding:0 1.5rem}.tq{padding-left:1.5rem}.hscroll{display:none}
   .bl{padding:1rem 1.5rem 0}.ddp{padding:2rem 1.5rem}.dsd{padding:2rem 1.5rem}
 }
+
+/* Geometric background pattern */
+.geo-bg{position:relative;overflow:hidden}
+.geo-bg::before{
+  content:'';
+  position:absolute;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(153,242,209,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(153,242,209,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.geo-bg::after{
+  content:'';
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse at 15% 50%,rgba(153,242,209,0.04) 0%,transparent 55%),
+    radial-gradient(ellipse at 85% 30%,rgba(153,242,209,0.03) 0%,transparent 50%);
+  pointer-events:none;
+}
+.geo-bg>*{position:relative;z-index:1}
+/* Diagonal lines overlay for variety */
+.geo-lines{position:relative;overflow:hidden}
+.geo-lines::before{
+  content:'';
+  position:absolute;inset:0;z-index:0;
+  background-image:repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 30px,
+    rgba(153,242,209,0.018) 30px,
+    rgba(153,242,209,0.018) 31px
+  );
+  pointer-events:none;
+}
+.geo-lines>*{position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -288,7 +328,7 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
     <div class="pi" onclick="go('sell')"><div><div class="pit">Sell Your Vehicle</div><div class="pis">Fast, fair valuations</div></div><span class="pil">Find Out More</span></div>
   </div>
   <div class="sp2">
-    <div class="si"><img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=900&q=80" alt="Summit Motor Co"/></div>
+    <div class="si"><img src="https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1200,q_90,f_auto/v1775813608/personal_approach_p8yas8.jpg" alt="Summit Motor Co"/></div>
     <div class="sct">
       <span class="ey">About Summit Motor Co</span>
       <h2 class="st">A Personal<br>Approach</h2>
@@ -297,7 +337,7 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
       <button class="ba ba-a" onclick="go('about')">About Us</button>
     </div>
   </div>
-  <div class="qb">
+  <div class="qb geo-lines">
     <blockquote>"Every vehicle we sell is one we would be proud to drive ourselves."</blockquote>
     <cite>Summit Motor Co &mdash; Holmfirth, West Yorkshire</cite>
   </div>
@@ -311,22 +351,22 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
     </div>
   </div>
   <div class="sp2">
-    <div class="sct dk" style="order:1">
+    <div class="sct dk geo-bg" style="order:1">
       <span class="ey">Looking to Sell?</span>
       <h2 class="st">We Buy <span>Quality Vehicles</span></h2>
       <div class="dv2 ac"></div>
       <p class="sb" style="margin-bottom:2rem;color:rgba(255,255,255,0.3)">Get a fast, fair, and completely hassle-free valuation. We handle everything.</p>
       <button class="ba ba-a" onclick="go('sell')">Get a Valuation</button>
     </div>
-    <div class="si" style="order:2"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80" alt="Sell"/></div>
+    <div class="si" style="order:2"><img src="https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1200,q_90,f_auto/v1775813774/we_buy_image_mvtraf.jpg" alt="We Buy Quality Vehicles"/></div>
   </div>
   <div id="hf"></div>
 </div>
 
 <!-- STOCK -->
 <div class="page" id="pg-stock">
-  <div class="phd"><div class="phdc"><span class="pey">Browse Our Collection</span><h1 class="ph1">Stock <span>List</span></h1></div></div>
-  <div class="fw">
+  <div class="phd geo-bg geo-lines"><div class="phdc"><span class="pey">Browse Our Collection</span><h1 class="ph1">Stock <span>List</span></h1></div></div>
+  <div class="fw geo-bg">
     <div class="fg"><label class="fl">Make</label><select class="fs" id="fmk" onchange="applyF()"><option value="">All Makes</option></select></div>
     <div class="fg"><label class="fl">Model</label><select class="fs" id="fmd" onchange="applyF()"><option value="">All Models</option></select></div>
     <div class="fg"><label class="fl">Transmission</label><select class="fs" id="ftr" onchange="applyF()"><option value="">Any</option><option value="Auto">Automatic</option><option value="Manual">Manual</option></select></div>
@@ -342,7 +382,7 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
 
 <!-- SOLD -->
 <div class="page" id="pg-sold">
-  <div class="phd"><div class="phdc"><span class="pey">Previously with Us</span><h1 class="ph1"><span>Sold</span> Vehicles</h1></div></div>
+  <div class="phd geo-bg geo-lines"><div class="phdc"><span class="pey">Previously with Us</span><h1 class="ph1"><span>Sold</span> Vehicles</h1></div></div>
   <div class="sec"><div class="con">
     <p style="font-family:var(--fb);font-size:13px;color:var(--muted);max-width:540px;line-height:1.85;margin-bottom:2rem">These vehicles have found their new homes. Looking for something specific? <a onclick="go('contact')" style="color:var(--accent);cursor:pointer;">Get in touch</a> &mdash; we may be able to help.</p>
     <div class="sg" id="sold-g"></div>
@@ -352,12 +392,11 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
 
 <!-- ABOUT -->
 <div class="page" id="pg-about">
-  <div class="ph" style="height:55vh">
-    <div class="phi"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80" alt="About"/><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,19,0.98) 0%,rgba(17,17,19,0.2) 70%)"></div></div>
-    <div class="phc"><span class="pey">Our Story</span><h1 class="ph1">About <span>Summit</span></h1></div>
+  <div class="phd geo-bg geo-lines" style="min-height:260px">
+    <div class="phdc"><span class="pey">Our Story</span><h1 class="ph1">About <span>Summit</span></h1></div>
   </div>
   <div class="sp2">
-    <div class="si"><img src="https://images.unsplash.com/photo-1562141961-b8df4b26e3f2?w=900&q=80" alt="Summit"/></div>
+    <div class="si"><img src="https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1200,q_90,f_auto/v1775813946/about_img_ueqdfy.jpg" alt="Summit Motor Co"/></div>
     <div class="sct">
       <span class="ey">Who We Are</span>
       <h2 class="st">Passionate About<br>Every Vehicle</h2>
@@ -368,7 +407,7 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
       <button class="ba ba-a" onclick="go('contact')">Get in Touch</button>
     </div>
   </div>
-  <div class="sec sec-mid"><div class="con">
+  <div class="sec sec-mid geo-bg"><div class="con">
     <div class="tc mb3"><span class="ey" style="display:block;text-align:center">Our Values</span><h2 class="st tc">What Sets Us <span>Apart</span></h2></div>
     <div class="vg">
       <div class="vc"><div class="vn">01</div><div class="vt">Honest Dealings</div><div class="vx">Transparent pricing, no hidden extras. What you see is what you pay.</div></div>
@@ -382,14 +421,14 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
 
 <!-- TESTIMONIALS -->
 <div class="page" id="pg-testimonials">
-  <div class="phd"><div class="phdc"><span class="pey">Customer Reviews</span><h1 class="ph1">What They <span>Say</span></h1></div></div>
+  <div class="phd geo-bg geo-lines"><div class="phdc"><span class="pey">Customer Reviews</span><h1 class="ph1">What They <span>Say</span></h1></div></div>
   <div class="sec"><div class="con">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem">
       <p class="sb" style="max-width:460px">What our customers say about their experience with Summit Motor Co.</p>
       <div style="text-align:right"><div style="font-family:var(--fh);font-size:3rem;font-weight:700;color:var(--white);line-height:1;letter-spacing:-0.03em">5.0</div><div style="color:var(--accent);letter-spacing:3px;font-size:15px;margin:4px 0">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div style="font-family:var(--fb);font-size:9px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase">Average Rating</div></div>
     </div>
     <div class="tl" id="all-t"></div>
-    <div style="margin-top:3rem;padding:3rem;background:var(--bg2);border:1px solid var(--border);text-align:center">
+    <div style="margin-top:3rem;padding:3rem;background:var(--bg2);border:1px solid var(--border);text-align:center;position:relative;overflow:hidden">
       <h3 style="font-family:var(--fh);font-size:1.1rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:0.8rem">Had a great experience?</h3>
       <p style="font-family:var(--fb);font-size:12.5px;color:var(--muted);margin-bottom:1.5rem">We would love to hear from you.</p>
       <button class="ba ba-a" onclick="go('contact')">Contact Us</button>
@@ -400,10 +439,10 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
 
 <!-- CONTACT -->
 <div class="page" id="pg-contact">
-  <div class="phd"><div class="phdc"><span class="pey">Get in Touch</span><h1 class="ph1">Contact <span>Us</span></h1></div></div>
+  <div class="phd geo-bg geo-lines"><div class="phdc"><span class="pey">Get in Touch</span><h1 class="ph1">Contact <span>Us</span></h1></div></div>
   <div class="sec" style="padding-top:0"><div class="con">
     <div class="cs">
-      <div class="ci">
+      <div class="ci geo-lines">
         <span class="ey" style="margin-top:2rem;display:block">Reach Us</span>
         <h2 class="st" style="font-size:1.5rem;margin-bottom:2rem">We'd Love to<br>Hear From You</h2>
         <div class="cd"><div class="cdi"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.55 10.82a19.79 19.79 0 01-3.07-8.67A2 2 0 012.45 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.1 6.1l.79-.79a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="cdl">Telephone</div><div class="cdv"><a href="tel:01484255541">01484 255541</a></div></div></div>
@@ -434,7 +473,7 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
 
 <!-- FIND US -->
 <div class="page" id="pg-find">
-  <div class="phd"><div class="phdc"><span class="pey">Location &amp; Hours</span><h1 class="ph1">Find <span>Us</span></h1></div></div>
+  <div class="phd geo-bg geo-lines"><div class="phdc"><span class="pey">Location &amp; Hours</span><h1 class="ph1">Find <span>Us</span></h1></div></div>
   <div class="mw"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d436327.769935535!2d-1.9987919760335158!3d53.42897752131763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bd7b473c60817%3A0x4a432e06cabb2a24!2sGMEC%20Cars%20and%20Commercials%20Ltd!5e0!3m2!1sen!2suk!4v1775723184928!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
   <div class="sec"><div class="con">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
@@ -468,11 +507,10 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
 
 <!-- SELL -->
 <div class="page" id="pg-sell">
-  <div class="ph" style="height:50vh">
-    <div class="phi"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80" alt="Sell"/><div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,19,0.98) 0%,rgba(17,17,19,0.2) 70%)"></div></div>
-    <div class="phc"><span class="pey">Looking to Sell?</span><h1 class="ph1">Sell Your <span>Vehicle</span></h1></div>
+  <div class="phd geo-bg geo-lines" style="min-height:260px">
+    <div class="phdc"><span class="pey">Looking to Sell?</span><h1 class="ph1">Sell Your <span>Vehicle</span></h1></div>
   </div>
-  <div class="sec sec-mid"><div class="con">
+  <div class="sec sec-mid geo-lines"><div class="con">
     <div class="tc mb3"><span class="ey" style="display:block;text-align:center">How It Works</span><h2 class="st tc">A Simple Process</h2></div>
     <div class="sr">
       <div class="sk"><div class="sn">01</div><div class="sti">Submit Details</div><div class="stx">Fill out the form with your vehicle details for a fast, accurate assessment.</div></div>
@@ -506,7 +544,7 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
 <div id="vd">
   <div class="bl" id="vd-back" onclick="clDet()">Back to Stock</div>
   <div class="dvw">
-    <div class="dgm"><img id="vd-img" src="" alt=""/></div>
+    <div class="dgm" id="vd-gallery"><img id="vd-img" src="" alt=""/></div>
     <div class="dtr" id="vd-thumbs"></div>
     <div class="db">
       <div class="ddp"><div class="dey" id="vd-ey"></div><h1 class="dt" id="vd-t"></h1><div class="dd" id="vd-d"></div></div>
@@ -563,25 +601,43 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
 <script>
 const STOCK = [
   {
-    id:1, make:'Land Rover', model:'Discovery 3', variant:'2.7 TD V6 SE Station Wagon 5dr',
-    year:2009, price:5695, priceNote:'', mileage:139800,
-    fuel:'Diesel', transmission:'Auto', colour:'Grey',
-    engine:'2.7L', co2:'', roadTax:'', category:'SUV',
-    badge:null, sold:false,
-    imgs:['https://m.atcdn.co.uk/a/media/w800/2baf55eccbb646e68d8a1ece00a7f60c.jpg'],
-    description:`Summit Motor Co are pleased to offer this 2009 Land Rover Discovery 3 TD V6 SE with a clear vehicle history. This capable four-wheel drive features a robust 2.7L Diesel engine and comfortable seven-passenger seating — ideal for families or those needing extra space. The SE trim ensures a well-equipped interior with low insurance group and proven Land Rover reliability.`
+    id:1, make:'Porsche', model:'718 Cayman GTS', variant:'2.5T GTS Euro 6 2dr',
+    year:2018, price:44995, priceNote:'', mileage:26169,
+    fuel:'Petrol', transmission:'Manual', colour:'Grey',
+    engine:'2.5L', co2:'', roadTax:'', category:'Coupe',
+    badge:'Low Mileage', sold:false,
+    imgs:['https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811205/Artboard_1_copy_22_mrwy7h.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811205/Artboard_1_copy_23_lekr5r.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811204/Artboard_1_copy_21_dpxjxq.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811199/Artboard_1_copy_12_dkxjvp.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811200/Artboard_1_copy_13_eixd9r.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811202/Artboard_1_copy_17_lafmy3.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811202/Artboard_1_copy_18_aj3mpb.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811333/Artboard_1_copy_15_q9ut7t.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811200/Artboard_1_copy_14_bbpoyy.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811201/Artboard_1_copy_16_xj3icd.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811199/Artboard_1_copy_11_vc7o2t.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811198/Artboard_1_copy_10_oh3jy1.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811198/Artboard_1_copy_9_nfdvp1.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811197/Artboard_1_copy_8_q4lb3m.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811206/Artboard_1_r24fbz.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811206/Artboard_1_copy_blsrez.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811197/Artboard_1_copy_7_jzvhot.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811196/Artboard_1_copy_6_as5kgq.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811196/Artboard_1_copy_5_yvrpio.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811196/Artboard_1_copy_4_ziqrkp.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811196/Artboard_1_copy_3_emhkiy.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811195/Artboard_1_copy_2_b2tfnr.jpg'],
+    description:`Summit Motor Co are delighted to offer this exceptional 2018 Porsche 718 Cayman GTS — just 26,169 miles for its age. Euro 6 compliant with sophisticated GTS trim, brushed aluminium gear lever, air conditioning with active carbon filter, and Bi-Xenon headlights with integrated LED daytime running lights. Connectivity via Connect Plus with Apple CarPlay. Performance is truly impressive with 0-62mph in just 4.6 seconds. A compelling choice for the discerning driver.`
   },
   {
-    id:2, make:'Audi', model:'A4 Allroad', variant:'2.0 TDI S Tronic quattro Euro 5 5dr',
-    year:2012, price:5495, priceNote:'', mileage:131667,
-    fuel:'Diesel', transmission:'Auto', colour:'Grey',
-    engine:'2.0L', co2:'', roadTax:'', category:'Estate',
-    badge:null, sold:false,
-    imgs:['https://m.atcdn.co.uk/a/media/w800/c9cf93f3e77d4a36832cb731b27d081c.jpg'],
-    description:`Summit Motor Co are pleased to offer this 2012 Audi A4 Allroad TDI — a compelling blend of capability and comfort. Powered by a 2.0 litre diesel with Audi quattro four-wheel drive. Features 3-zone climate control, Bluetooth, acoustic parking sensors, and achieves 0-62mph in just 8.1 seconds.`
+    id:2, make:'BMW', model:'X3 M Competition', variant:'3.0i Competition Auto xDrive Euro 6 5dr',
+    year:2019, price:41695, priceNote:'', mileage:52045,
+    fuel:'Petrol', transmission:'Auto', colour:'Red',
+    engine:'3.0L', co2:'', roadTax:'', category:'SUV',
+    badge:'Stage 2 · Custom Map', sold:false,
+    imgs:['https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810991/Artboard_1_copy_15_s38hx1.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810992/Artboard_1_copy_16_yzrqvb.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810991/Artboard_1_copy_17_jbqbfr.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810991/Artboard_1_copy_9_wqhcdo.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810992/Artboard_1_copy_8_e0kvvy.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810992/Artboard_1_copy_10_hinjh9.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810992/Artboard_1_copy_11_vvnos3.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810992/Artboard_1_copy_12_z8kkzc.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811138/Artboard_1_copy_7_udrnyz.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811138/Artboard_1_copy_14_xz4gch.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810992/Artboard_1_copy_13_nwprw3.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811139/Artboard_1_copy_x3mbf1.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811139/Artboard_1_g5uck3.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810993/Artboard_1_copy_5_qttjbq.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810993/Artboard_1_copy_6_slzlil.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810994/Artboard_1_copy_4_m78vpv.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810995/Artboard_1_copy_3_iu1mip.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775810995/Artboard_1_copy_2_houwkm.jpg'],
+    description:`Summit Motor Co are proud to offer this outstanding 2019 BMW X3 M Competition — a very high specification factory example further enhanced with a custom Stage 2 map by Senior Performance, BMW specialists in Wakefield. This car must be seen and driven to be truly appreciated. Features include front and rear seat heating, panoramic sunroof, electric towbar, Driving Assistant Plus with blind spot assistance and adaptive cruise control. 0-62mph in just 4.1 seconds. Private plate not included.`
   },
   {
-    id:3, make:'MINI', model:'Countryman Cooper SE', variant:'1.5 Cooper SE Auto ALL4 Euro 6 5dr',
+    id:3, make:'BMW', model:'M140i', variant:'Details Coming Soon',
+    year:0, price:0, priceNote:'POA', mileage:0,
+    fuel:'', transmission:'', colour:'',
+    engine:'', co2:'', roadTax:'', category:'Hatchback',
+    badge:'Coming Soon', sold:false,
+    imgs:['https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811077/Artboard_1_copy_15_utwrrn.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811078/Artboard_1_copy_18_ggegwn.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811077/Artboard_1_copy_10_qdh3ne.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811076/Artboard_1_copy_8_aggh5f.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811077/Artboard_1_copy_11_rv8pul.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811077/Artboard_1_copy_12_xutwnq.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811078/Artboard_1_copy_16_udwjuk.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811076/Artboard_1_copy_7_he8dxn.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811076/Artboard_1_copy_6_cy1qjs.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811079/Artboard_1_fpdsxa.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811075/Artboard_1_copy_4_eomgza.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811075/Artboard_1_copy_3_bxql3z.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811075/Artboard_1_copy_2_gnvzr7.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811076/Artboard_1_copy_5_eq6jqr.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811079/Artboard_1_copy_jkb0pr.jpg'],
+    description:`Full details for this BMW M140i coming soon. Contact us for more information or to register your interest.`
+  },
+  {
+    id:4, make:'Mercedes-Benz', model:'E220d AMG Line', variant:'2.0 E220d AMG Line Premium G-Tronic+ Euro 6 2dr',
+    year:2021, price:22495, priceNote:'', mileage:68000,
+    fuel:'Diesel', transmission:'Auto', colour:'Silver',
+    engine:'2.0L', co2:'', roadTax:'', category:'Coupe',
+    badge:null, sold:false,
+    imgs:['https://m.atcdn.co.uk/a/media/w800/65648bb195a445e1bf3978f0b3dfba17.jpg'],
+    description:`Summit Motor Co are pleased to offer this refined 2021 Mercedes-Benz E Class E220d AMG Line Premium Coupe. Powered by a 2.0L diesel engine meeting Euro 6 standards with sought-after AMG Line trim. Premium features include wireless charging, THERMOTRONIC three-zone climate control, Memory Package, heated front seats, and a Parking Package with 360-degree camera. A truly premium and practical choice.`
+  },
+  {
+    id:5, make:'MINI', model:'Countryman Cooper SE', variant:'1.5 Cooper SE Auto ALL4 Euro 6 5dr',
     year:2017, price:12995, priceNote:'', mileage:50042,
     fuel:'Petrol Plug-in Hybrid', transmission:'Auto', colour:'Blue',
     engine:'1.5L', co2:'', roadTax:'', category:'SUV',
@@ -590,26 +646,37 @@ const STOCK = [
     description:`Summit Motor Co are excited to offer this 2017 MINI Countryman Cooper SE — low mileage for its age at just 50,042 miles. This four-wheel drive Euro 6 plug-in hybrid comes with the Driving Assistant Pack featuring adaptive cruise control, CHILI Pack with LED headlights, climate control and keyless entry. 18-inch Pin Spoke alloys and heated front seats complete this well-appointed package.`
   },
   {
-    id:4, make:'BMW', model:'M2', variant:'3.0i DCT Euro 6 2dr',
+    id:6, make:'Land Rover', model:'Discovery 3', variant:'2.7 TD V6 SE Station Wagon 5dr',
+    year:2009, price:5695, priceNote:'', mileage:139800,
+    fuel:'Diesel', transmission:'Auto', colour:'Grey',
+    engine:'2.7L', co2:'', roadTax:'', category:'SUV',
+    badge:null, sold:false,
+    imgs:['https://m.atcdn.co.uk/a/media/w800/2baf55eccbb646e68d8a1ece00a7f60c.jpg'],
+    description:`Summit Motor Co are pleased to offer this 2009 Land Rover Discovery 3 TD V6 SE with a clear vehicle history. This capable four-wheel drive features a robust 2.7L Diesel engine and comfortable seven-passenger seating — ideal for families or those needing extra space. The SE trim ensures a well-equipped interior with low insurance group and proven Land Rover reliability.`
+  }
+,
+  {
+    id:7, make:'BMW', model:'M2', variant:'3.0i DCT Euro 6 2dr',
     year:2018, price:25995, priceNote:'', mileage:58792,
     fuel:'Petrol', transmission:'Auto', colour:'Black',
     engine:'3.0L', co2:'', roadTax:'', category:'Coupe',
     badge:'Stage 2 · 440BHP', sold:false,
-    imgs:['https://m.atcdn.co.uk/a/media/w800/cb665392afe24136b24aa3cb2aa07775.jpg'],
+    imgs:[],
     description:`Summit Motor Co are proud to offer this stunning 2018 BMW M2 with 58,000 miles and a huge list of premium upgrades delivering an impressive 440BHP Stage 2 setup. AMC Performance Stage 2 tune with decat downpipe, midpipe delete and MST performance air intake. Extensive CT Carbon upgrades throughout including front splitter, rear lip, diffuser, wing mirrors, rear wing and exhaust tips. Auto ID CS bonnet, smoked VLAND OLED rear lights with dynamic animation, RGB front DRL lighting, carbon LED steering wheel, Apple CarPlay, lowering springs and Michelin Pilot Sport 4S tyres.`
-  },
+  }];
+
+const SOLD = [
   {
-    id:5, make:'BMW', model:'X3 M Competition', variant:'3.0i Competition Auto xDrive Euro 6 5dr',
-    year:2019, price:41695, priceNote:'', mileage:52045,
-    fuel:'Petrol', transmission:'Auto', colour:'Red',
-    engine:'3.0L', co2:'', roadTax:'', category:'SUV',
-    badge:'Stage 2 · Custom Map', sold:false,
-    imgs:['https://m.atcdn.co.uk/a/media/w800/d8912b076f5c408e90e14bd45f4b95e9.jpg'],
-    description:`Summit Motor Co are proud to offer this outstanding 2019 BMW X3 M Competition — a very high specification factory example further enhanced with a custom Stage 2 map by Senior Performance, BMW specialists in Wakefield. This car must be seen and driven to be truly appreciated. Features include front and rear seat heating, panoramic sunroof, electric towbar, Driving Assistant Plus with blind spot assistance and adaptive cruise control. 0-62mph in just 4.1 seconds. Private plate not included.`
+    id:'S1', make:'Audi', model:'A4 Allroad', variant:'2.0 TDI S Tronic quattro Euro 5 5dr',
+    year:2012, price:5495, priceNote:'', mileage:131667,
+    fuel:'Diesel', transmission:'Auto', colour:'Grey',
+    engine:'2.0L', co2:'', roadTax:'', category:'Estate',
+    badge:null, sold:true,
+    imgs:['https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811390/Artboard_1_copy_12_nhap3j.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811267/Artboard_1_copy_8_m7otzw.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811266/Artboard_1_copy_7_jg7ees.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811271/Artboard_1_copy_16_jinolr.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811271/Artboard_1_copy_15_b9wiid.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811270/Artboard_1_copy_14_hronpt.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811271/Artboard_1_copy_17_feqpua.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811271/Artboard_1_copy_18_uj3ojw.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811390/Artboard_1_copy_10_nq3muw.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811391/Artboard_1_copy_13_tfbeyj.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811267/Artboard_1_copy_9_suqrbe.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811268/Artboard_1_copy_11_fbjxqh.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811265/Artboard_1_copy_2_vjzbsk.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811265/Artboard_1_copy_3_nidxut.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811265/Artboard_1_copy_5_pqyuni.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811266/Artboard_1_copy_6_x24vc7.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811266/Artboard_1_copy_4_ez8sj6.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811272/Artboard_1_tj1onv.jpg','https://res.cloudinary.com/dcv5ksqe8/image/upload/w_1600,q_90,f_auto/v1775811391/Artboard_1_copy_jcjiyf.jpg'],
+    description:`Summit Motor Co are pleased to offer this 2012 Audi A4 Allroad TDI — a compelling blend of capability and comfort. Powered by a 2.0 litre diesel with Audi quattro four-wheel drive. Features 3-zone climate control, Bluetooth, acoustic parking sensors, and achieves 0-62mph in just 8.1 seconds.`
   }
 ];
 
-const SOLD = [];
 
 const TESTIMONIALS = [
   {name:'James Thornton',loc:'Huddersfield',rating:5,date:'February 2025',text:'Absolutely exceptional service. The whole experience was a pleasure from start to finish. No pressure, totally transparent, and the car was immaculate. Could not recommend highly enough.'},
@@ -634,9 +701,10 @@ function fmt(n){return'£'+parseFloat(n).toLocaleString('en-GB')}
 function mkCard(v,src){
   const img=v.imgs&&v.imgs[0]?`<img src="${v.imgs[0]}" alt="${v.make} ${v.model}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=ni>No Image Available</div>'">`:`<div class="ni">No Image Available</div>`;
   const badge=v.badge?`<div class="sbg bt">${v.badge}</div>`:v.sold?`<div class="sbg bs">SOLD</div>`:'';
-  const price=v.sold?`<div class="sp">Sold</div>`:`<div class="sp">${fmt(v.price)}${v.priceNote?`<span style="font-size:0.6em;font-weight:300;margin-left:5px">${v.priceNote}</span>`:''}</div>`;
+  const priceDisplay = v.price === 0 ? `<div class="sp">${v.priceNote||'POA'}</div>` : v.sold ? `<div class="sp">Sold</div>` : `<div class="sp">${fmt(v.price)}${v.priceNote?`<span style="font-size:0.6em;font-weight:300;margin-left:5px">${v.priceNote}</span>`:''}</div>`;
+  const price = priceDisplay;
   const vid=encodeURIComponent(String(v.id));
-  return `<div class="sc" onclick="opDet('${vid}','${src}')"><div class="sci">${badge}${img}</div><div class="scb"><div class="sy">${v.year}</div><div class="sm">${v.make}</div><div class="smo">${v.model}</div><div class="ssp"><span>${Number(v.mileage).toLocaleString()} miles</span><span>${v.transmission}</span><span>${v.fuel}</span><span>${v.colour}</span></div><div class="sf">${price}<span class="sd">Full Details</span></div></div></div>`;
+  return `<div class="sc" onclick="opDet('${vid}','${src}')"><div class="sci">${badge}${img}</div><div class="scb"><div class="sy">${v.year||''}</div><div class="sm">${v.make}</div><div class="smo">${v.model}</div><div class="ssp"><span>${v.mileage>0?Number(v.mileage).toLocaleString()+' miles':'Details Coming Soon'}</span><span>${v.transmission}</span><span>${v.fuel}</span><span>${v.colour}</span></div><div class="sf">${price}<span class="sd">Full Details</span></div></div></div>`;
 }
 
 function rndrStock(data,id,src){const g=document.getElementById(id);if(!g)return;g.innerHTML=data.length?data.map(v=>mkCard(v,src)).join(''):`<div class="nr2"><p>No vehicles found.</p></div>`}
@@ -649,10 +717,32 @@ function opDet(eid,src){
   document.getElementById('vd-back').textContent=src==='sold'?'← Back to Sold Vehicles':'← Back to Stock';
   document.getElementById('vd-ey').textContent=`${v.year} ${v.make}`;
   document.getElementById('vd-t').textContent=v.model;
-  document.getElementById('vd-p').textContent=v.sold?'SOLD':fmt(v.price)+(v.priceNote||'');
-  const specs=[{l:'Year',v:v.year},{l:'Mileage',v:Number(v.mileage).toLocaleString()+' miles'},{l:'Fuel',v:v.fuel},{l:'Transmission',v:v.transmission},{l:'Colour',v:v.colour},{l:'Engine',v:v.engine||'—'},{l:'Body',v:v.category||'—'},{l:'CO2',v:v.co2||'—'},{l:'Road Tax',v:v.roadTax||'—'}];
+  document.getElementById('vd-p').textContent=v.sold?'SOLD':v.price===0?(v.priceNote||'POA'):fmt(v.price)+(v.priceNote||'');
+  const specs=[{l:'Year',v:v.year},{l:'Mileage',v:v.mileage>0?Number(v.mileage).toLocaleString()+' miles':'Coming Soon'},{l:'Fuel',v:v.fuel},{l:'Transmission',v:v.transmission},{l:'Colour',v:v.colour},{l:'Engine',v:v.engine||'—'},{l:'Body',v:v.category||'—'},{l:'CO2',v:v.co2||'—'},{l:'Road Tax',v:v.roadTax||'—'}];
   document.getElementById('vd-sp').innerHTML=specs.map(s=>`<div><div class="dl">${s.l}</div><div class="dv">${s.v}</div></div>`).join('');
-  const mi=document.getElementById('vd-img');if(v.imgs&&v.imgs[0]){mi.src=v.imgs[0];mi.style.display='block'}else{mi.style.display='none'}
+  const mi=document.getElementById('vd-img');
+  const dgm=document.getElementById('vd-gallery');
+  // Remove old blur bg and arrows
+  const oldBlur=dgm.querySelector('.dgm-blur');if(oldBlur)oldBlur.remove();
+  const oldPrev=dgm.querySelector('.dgm-prev');if(oldPrev)oldPrev.remove();
+  const oldNext=dgm.querySelector('.dgm-next');if(oldNext)oldNext.remove();
+  if(v.imgs&&v.imgs[0]){
+    mi.src=v.imgs[0];mi.style.display='block';
+    // Add blur background
+    const blurEl=document.createElement('div');
+    blurEl.className='dgm-blur';
+    blurEl.style.backgroundImage=`url('${v.imgs[0]}')`;
+    dgm.insertBefore(blurEl,mi);
+    // Add arrows if multiple images
+    if(v.imgs.length>1){
+      let curIdx=0;
+      const prev=document.createElement('div');prev.className='dgm-prev';prev.innerHTML='&#8592;';
+      const next=document.createElement('div');next.className='dgm-next';next.innerHTML='&#8594;';
+      prev.onclick=function(){curIdx=(curIdx-1+v.imgs.length)%v.imgs.length;mi.src=v.imgs[curIdx];blurEl.style.backgroundImage=`url('${v.imgs[curIdx]}')`;document.querySelectorAll('.dth').forEach((t,i)=>{t.classList.toggle('on',i===curIdx)})};
+      next.onclick=function(){curIdx=(curIdx+1)%v.imgs.length;mi.src=v.imgs[curIdx];blurEl.style.backgroundImage=`url('${v.imgs[curIdx]}')`;document.querySelectorAll('.dth').forEach((t,i)=>{t.classList.toggle('on',i===curIdx)})};
+      dgm.appendChild(prev);dgm.appendChild(next);
+    }
+  }else{mi.style.display='none'}
   const tr=document.getElementById('vd-thumbs');tr.innerHTML=v.imgs&&v.imgs.length>1?v.imgs.map((img,n)=>`<img src="${img}" class="dth ${n===0?'on':''}" onclick="swImg('${img}',this)" alt=""/>`).join(''):'';tr.style.display=v.imgs&&v.imgs.length>1?'flex':'none';
   document.getElementById('vd-d').innerHTML=v.description?`<p>${v.description}</p>`:'<p>Contact us for full details about this vehicle.</p>';
   const df=document.getElementById('vdf');if(!df.querySelector('footer'))df.innerHTML=document.getElementById('ft').innerHTML;
@@ -660,7 +750,11 @@ function opDet(eid,src){
   document.getElementById('mo-vn').textContent=vn;
   const mvi=document.getElementById('mo-vehicle');if(mvi)mvi.value=vn;
 }
-function swImg(src,el){document.getElementById('vd-img').src=src;document.querySelectorAll('.dth').forEach(t=>t.classList.remove('on'));el.classList.add('on')}
+function swImg(src,el){
+  document.getElementById('vd-img').src=src;
+  const blur=document.querySelector('.dgm-blur');if(blur)blur.style.backgroundImage=`url('${src}')`;
+  document.querySelectorAll('.dth').forEach(t=>t.classList.remove('on'));el.classList.add('on');
+}
 function clDet(){document.getElementById('vd').style.display='none';go(detSrc==='sold'?'sold':'stock')}
 
 function popMakes(){const makes=[...new Set(STOCK.filter(v=>!v.sold).map(v=>v.make))].sort();const s=document.getElementById('fmk');if(!s)return;s.innerHTML='<option value="">All Makes</option>';makes.forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;s.appendChild(o)})}
