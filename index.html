@@ -273,6 +273,18 @@ footer{background:var(--black);padding:4.5rem 3rem 2rem;border-top:1px solid var
   pointer-events:none;
 }
 .geo-lines>*{position:relative;z-index:1}
+
+/* Lightbox */
+.lb{display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.95);align-items:center;justify-content:center;cursor:zoom-out}
+.lb.on{display:flex}
+.lb-img{max-width:100vw;max-height:100vh;object-fit:contain;display:block}
+.lb-close{position:absolute;top:1rem;right:1.2rem;color:var(--white);font-size:2rem;cursor:pointer;z-index:9001;line-height:1;opacity:0.7;transition:opacity 0.15s;background:none;border:none}
+.lb-close:hover{opacity:1}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);color:var(--white);font-size:2rem;cursor:pointer;z-index:9001;opacity:0.6;transition:opacity 0.15s;background:rgba(0,0,0,0.4);border:none;width:50px;height:50px;display:flex;align-items:center;justify-content:center}
+.lb-prev{left:0}.lb-next{right:0}
+.lb-prev:hover,.lb-next:hover{opacity:1}
+.dgm img{cursor:zoom-in}
+.dth{cursor:pointer}
 </style>
 </head>
 <body>
@@ -728,7 +740,7 @@ function opDet(eid,src){
   const oldPrev=dgm.querySelector('.dgm-prev');if(oldPrev)oldPrev.remove();
   const oldNext=dgm.querySelector('.dgm-next');if(oldNext)oldNext.remove();
   if(v.imgs&&v.imgs[0]){
-    mi.src=v.imgs[0];mi.style.display='block';
+    mi.src=v.imgs[0];mi.style.display='block';lbImgs=v.imgs;lbIdx=0;mi.onclick=function(){opLb(v.imgs,0)};
     // Add blur background
     const blurEl=document.createElement('div');
     blurEl.className='dgm-blur';
@@ -744,17 +756,18 @@ function opDet(eid,src){
       dgm.appendChild(prev);dgm.appendChild(next);
     }
   }else{mi.style.display='none'}
-  const tr=document.getElementById('vd-thumbs');tr.innerHTML=v.imgs&&v.imgs.length>1?v.imgs.map((img,n)=>`<img src="${img}" class="dth ${n===0?'on':''}" onclick="swImg('${img}',this)" alt=""/>`).join(''):'';tr.style.display=v.imgs&&v.imgs.length>1?'flex':'none';
+  const tr=document.getElementById('vd-thumbs');tr.innerHTML=v.imgs&&v.imgs.length>1?v.imgs.map((img,n)=>`<img src="${img}" class="dth ${n===0?'on':''}" onclick="swImg('${img}',this,${JSON.stringify(v.imgs)},${n})" alt=""/>`).join(''):'';tr.style.display=v.imgs&&v.imgs.length>1?'flex':'none';
   document.getElementById('vd-d').innerHTML=v.description?`<p>${v.description}</p>`:'<p>Contact us for full details about this vehicle.</p>';
   const df=document.getElementById('vdf');if(!df.querySelector('footer'))df.innerHTML=document.getElementById('ft').innerHTML;
   const vn=`${v.year} ${v.make} ${v.model}`;
   document.getElementById('mo-vn').textContent=vn;
   const mvi=document.getElementById('mo-vehicle');if(mvi)mvi.value=vn;
 }
-function swImg(src,el){
+function swImg(src,el,imgs,idx){
   document.getElementById('vd-img').src=src;
   const blur=document.querySelector('.dgm-blur');if(blur)blur.style.backgroundImage=`url('${src}')`;
   document.querySelectorAll('.dth').forEach(t=>t.classList.remove('on'));el.classList.add('on');
+  const mi=document.getElementById('vd-img');mi.onclick=function(){opLb(imgs||lbImgs,idx||0)};
 }
 function clDet(){document.getElementById('vd').style.display='none';go(detSrc==='sold'?'sold':'stock')}
 
@@ -776,6 +789,30 @@ function opMo(){document.getElementById('mo').classList.add('on')}
 function clMo(){document.getElementById('mo').classList.remove('on')}
 document.getElementById('mo').addEventListener('click',function(e){if(e.target===this)clMo()});
 
+
+// Lightbox
+let lbImgs=[], lbIdx=0;
+function opLb(imgs, idx){
+  lbImgs=imgs; lbIdx=idx;
+  document.getElementById('lb-img').src=imgs[idx];
+  document.getElementById('lb').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function clLb(){
+  document.getElementById('lb').classList.remove('on');
+  document.body.style.overflow='';
+}
+function lbNav(dir){
+  lbIdx=(lbIdx+dir+lbImgs.length)%lbImgs.length;
+  document.getElementById('lb-img').src=lbImgs[lbIdx];
+  event.stopPropagation();
+}
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('lb').classList.contains('on'))return;
+  if(e.key==='ArrowRight')lbNav(1);
+  if(e.key==='ArrowLeft')lbNav(-1);
+  if(e.key==='Escape')clLb();
+});
 (function init(){
   rndrStock(STOCK.filter(v=>!v.sold).slice(0,3),'hfg','stock');
   rndrT(TESTIMONIALS.slice(0,3),'htesti');
@@ -786,6 +823,13 @@ document.getElementById('mo').addEventListener('click',function(e){if(e.target==
 })();
 </script>
 
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="clLb()">
+  <button class="lb-close" onclick="clLb()">&times;</button>
+  <button class="lb-prev" onclick="lbNav(-1);event.stopPropagation()">&#8592;</button>
+  <img class="lb-img" id="lb-img" src="" alt=""/>
+  <button class="lb-next" onclick="lbNav(1);event.stopPropagation()">&#8594;</button>
+</div>
 <a href="https://wa.me/447542801056" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp" style="position:fixed;bottom:2rem;right:2rem;z-index:9999;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s,box-shadow 0.2s;text-decoration:none" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(37,211,102,0.55)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,0.4)'">
   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
